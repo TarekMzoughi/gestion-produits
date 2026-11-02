@@ -3,9 +3,10 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
+import { ConfigModule } from '@nestjs/config';
+
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
-
 @Module({
   imports: [
     // Distributed tracing, auto-correlated logs, request/job metrics, error
@@ -15,6 +16,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'gestion-produits',
     }),
+    ConfigModule.forRoot(),
     ProductsModule,
   ],
   controllers: [AppController],
